@@ -1,0 +1,26 @@
+{
+  "name": "react-native-form-verify",
+  "version": "1.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "extend": "^3.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zmrdlb/react-native-form-verify.git"
+  },
+  "keywords": [],
+  "author": {
+    "name": "zmrdlb",
+    "email": "592044573@qq.com"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zmrdlb/react-native-form-verify/issues"
+  },
+  "homepage": "https://github.com/zmrdlb/react-native-form-verify#readme"
+}
