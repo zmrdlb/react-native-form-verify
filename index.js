@@ -1,5 +1,7 @@
-import VerifyInput from './verifyinput';
+import VerifyString from './verifystring';
 import VerifyPassword from './verifypassword';
+import VerifyNumber from './verifynumber';
 
-exports.VerifyInput = VerifyInput;
+exports.VerifyString = VerifyString;
 exports.VerifyPassword = VerifyPassword;
+exports.VerifyNumber = VerifyNumber;
