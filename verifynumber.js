@@ -42,11 +42,13 @@
       _getconfig(){
           super._getconfig();
 
+          var props = this.root.props;
+
           extend(this.config,{
-              isinteger: this.root.props.isinteger || false,
-              decimaldigits: this.root.props.decimaldigits || null,
-              min: this.root.props.min || null,
-              max: this.root.props.max || null
+              isinteger: props.isinteger || false,
+              decimaldigits: props.decimaldigits || null,
+              min: props.min || null,
+              max: props.max || null
           });
 
           Util.merge(this.config.errmsg,{

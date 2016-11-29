@@ -4,6 +4,7 @@
 const extend = require('extend');
 import VerifyInput from './verifyinput';
 import Util from './util';
+const Regconfig = require('./regconfig');
 
 export default class VerifyString extends VerifyInput{
      /**
@@ -25,11 +26,20 @@ export default class VerifyString extends VerifyInput{
       *      required: true|false //是否是必填，默认false
       *      minLength: 0 //如果填写了数据，最小长度
       *      maxLength: 0 //如果填写了数据，最大长度
+      *      verifytype: 数据验证类型，默认为null不验证。可枚举的类别如下：
+      *         email 邮箱
+      *         mobile 手机号码
+      *         chinese 中文
+      *         english 英文
+      *         idcard 合法身份证
+      *         url 合法url
+      *         cardno 有效银行卡号
       *      errmsg: {
       *          required: '此项必填',
       *          minLength: '最少输入${minLength}个字符',
       *          maxLength: '最多输入${maxLength}个字符',
-      *          placeholder: '输入值不能是默认提示文案'
+      *          placeholder: '输入值不能是默认提示文案',
+      *          verifytype: '数据类型错误'
       *      }
       *  ｝
       *  这些配置全部都放在了this.config中
@@ -37,14 +47,18 @@ export default class VerifyString extends VerifyInput{
      _getconfig(){
          super._getconfig();
 
+         var props = this.root.props;
+
          extend(this.config,{
-             minLength: this.root.props.minLength || null,
-             maxLength: this.root.props.maxLength || null
+             minLength: props.minLength || null,
+             maxLength: props.maxLength || null,
+             verifytype: props.verifytype || null
          });
 
          Util.merge(this.config.errmsg,{
              minLength: `最少输入${this.config.minLength}个字符`,
-             maxLength: `最多输入${this.config.maxLength}个字符`
+             maxLength: `最多输入${this.config.maxLength}个字符`,
+             verifytype: '数据类型错误'
          },false,false);
      }
      /**
@@ -67,6 +81,15 @@ export default class VerifyString extends VerifyInput{
              }
              if(config.maxLength != null && val.length > config.maxLength){
                  return config.errmsg.maxLength;
+             }
+             if(config.verifytype != null && config.verifytype != ''){
+                 var funname = config.verifytype.replace(/[a-z]/,function(first){
+                     return first.toUpperCase();
+                 });
+                 funname = 'is'+funname;
+                 if(Regconfig[funname] && !Regconfig[funname](val)){
+                     return config.errmsg.verifytype;
+                 }
              }
          }
 

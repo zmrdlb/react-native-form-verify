@@ -37,9 +37,11 @@
        *  这些配置全部都放在了this.config中
        */
       _getconfig(){
+          var props = this.root.props;
+
           this.config = {
-              required: this.root.props.required || false,
-              placeholder: this.root.props.placeholder || null
+              required: props.required || false,
+              placeholder: props.placeholder || null
           };
           this.config.errmsg = {
               required: '此项必填',
@@ -67,7 +69,7 @@
           if(config.placeholder != null && val == config.placeholder){ //验证是否等于placeholder
               return config.errmsg.placeholder;
           }
-          
+
           return null;
       }
  }
