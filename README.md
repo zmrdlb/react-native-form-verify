@@ -114,9 +114,9 @@ this._verify.username = new VerifyString(this.refs.username); //实例化
 
 每种类型都有各自的验证配置，大体分为2大类。
 
-- 1. 数据验证配置。如required等，后面会有具体说明
+- 1.数据验证配置。如required等，后面会有具体说明
 
-- 2. 错误信息配置，errmsg {Object}, 后面也有具体说明
+- 2.错误信息配置，errmsg {Object}, 后面也有具体说明
 
 以上两种配置，`都不是必填`，都有默认值或者文案。都以`props`的方式配置在TextInput中
 
@@ -138,9 +138,18 @@ this._verify.username = new VerifyString(this.refs.username); //实例化
 
   Name  |  默认值  |  说明  
 ----    |----      |----
-required| false | 输入框值是否必填
-minLength| null | 数据最小长度，如果不设置则不验证
-maxLength| null | 数据最大长度，如果不设置则不验证
+required| false | {Boolean} 输入框值是否必填
+minLength| null | {Number} 数据最小长度，如果不设置则不验证
+maxLength| null | {Number} 数据最大长度，如果不设置则不验证
+verifytype| null | {String} 数据验证类型，如果不设置则不验证。可枚举的类型如下：
+
+> email 邮箱 | 
+  mobile 手机号码 | 
+  chinese 中文 | 
+  english 英文 | 
+  idcard 合法身份证 | 
+  url 合法url | 
+  cardno 有效银行卡号
 
 ### 错误信息配置
 
@@ -150,6 +159,7 @@ required| 此项必填
 placeholder|输入值不能是默认提示文案
 minLength|最少输入${minLength}个字符
 maxLength|最多输入${maxLength}个字符
+verifytype|数据类型错误
 
 ## VerifyNumber：数字验证
 
@@ -157,11 +167,11 @@ maxLength|最多输入${maxLength}个字符
 
   Name  |  默认值  |  说明  
 ----    |----      |----
-required| false | 输入框值是否必填
-isinteger| false | 数据是否必须是整数。如果设置为true, 则输入的数据必须为整数
+required| false | {Boolean} 输入框值是否必填
+isinteger| false | {Boolean} 数据是否必须是整数。如果设置为true, 则输入的数据必须为整数
 decimaldigits| null| {Number整数 >= 1} 如果isinteger为false, 则设置此值表示，如果输入的是小数，最多允许多少位小数
-min| null | 数据最小值，如果不设置则不验证
-max| null | 数据最大值，如果不设置则不验证
+min| null | {Number} 数据最小值，如果不设置则不验证
+max| null | {Number} 数据最大值，如果不设置则不验证
 
 ### 错误信息配置
 
